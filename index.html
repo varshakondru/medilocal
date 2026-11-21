@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediLocal - Medicine & Clinic Queue</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>MediLocal</h1>
+    <p>Hyperlocal Medicine Stock & Live Clinic Queue</p>
+    <div class="tabs">
+      <button id="btnPatient" class="tab active" onclick="switchView('patient')">Patient View</button>
+      <button id="btnAdmin" class="tab" onclick="switchView('admin')">Pharmacy / Clinic Admin</button>
+    </div>
+  </header>
+
+  <main id="patientView">
+    <section class="card">
+      <h2>1. Find Medicine & Generic Alternatives</h2>
+      <input type="text" id="searchInput" placeholder="Search medicine or salt (e.g., Dolo, Paracetamol)..." onkeyup="renderPatientMedicines()" />
+      <div id="medicineResults"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. Live Clinic Queue</h2>
+      <p><strong>City Care Clinic (Brodipet, Guntur)</strong></p>
+      <p>Current Running Token: <span id="currentToken" class="badge">12</span></p>
+      <p>Your Token: <span id="userToken">Not booked</span></p>
+      <button onclick="bookToken()">Book My Token</button>
+    </section>
+  </main>
+
+  <main id="adminView" style="display:none;">
+    <section class="card">
+      <h2>Clinic Receptionist Control</h2>
+      <p>Current Running Token: <span id="adminCurrentToken" class="badge">12</span></p>
+      <button onclick="nextPatient()">Call Next Patient (+1)</button>
+    </section>
+
+    <section class="card">
+      <h2>Pharmacy Inventory Manager</h2>
+      <div class="add-form">
+        <input type="text" id="newMedName" placeholder="Brand Name (e.g., Crocin 650)" />
+        <input type="text" id="newMedGeneric" placeholder="Generic Salt (e.g., Paracetamol)" />
+        <input type="text" id="newMedShop" placeholder="Pharmacy & Area" />
+        <input type="text" id="newMedPrice" placeholder="Price (e.g., ₹25)" />
+        <button onclick="addMedicine()">+ Add Medicine</button>
+      </div>
+      <div id="adminMedicineList"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
